@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: >-
-  Deploy Lambda Function to Enrich Comprehend Medical Output with Comprehend Custom Classification and Custom Code
+  Deploy Lambda Function to Enrich Amazon Comprehend Medical Output with an Amazon Comprehend Custom Classification and Custom Code.
 
 Parameters:
   ComprehendCustomEndpoint:

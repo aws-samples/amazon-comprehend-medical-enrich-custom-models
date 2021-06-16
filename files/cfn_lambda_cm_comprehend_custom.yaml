@@ -10,7 +10,7 @@ Parameters:
     Default: "aws-hcls-ml"
   StaticCodeKey:
     Type: String
-    Default: 'comprehend_medical_custom_lambda_code/functions/packages/MyFunction/lambda.zip'
+    Default: 'blog_post_support_materials/comprehend_medical_custom_lambda_code/functions/packages/MyFunction/lambda.zip'
 
 
 Resources:
@@ -30,7 +30,7 @@ Resources:
       Bucket: !Ref NotificationBucket
 
   #this is the lambda function that call comprehend medical and the custom models
-  CallCMandCustomCode: 
+  i: 
     Type: 'AWS::Lambda::Function'
     Properties:
       Code:

@@ -30,7 +30,7 @@ Resources:
       Bucket: !Ref NotificationBucket
 
   #this is the lambda function that call comprehend medical and the custom models
-  i: 
+  CallCMandCustomCode: 
     Type: 'AWS::Lambda::Function'
     Properties:
       Code:

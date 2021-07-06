@@ -1,6 +1,6 @@
 # Integrate Amazon Comprehend Medical with Custom Code and Models
 
-*This code repository supports the blog post `Enrich Amazon Comprehend Medical with Custom Code and Models`. Please see that blog for further details and context for deploying this solution. Much of the content in this repository is copied from there.*
+*This code repository supports the blog post `Enrich Amazon Comprehend Medical with Custom Code and Models`. Please see that blog for step-by-step instructions and further details for deploying this solution. Much of the content in this repository is copied from there.*
 
 ## Introduction
 

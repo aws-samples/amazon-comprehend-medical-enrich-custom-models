@@ -166,6 +166,8 @@ In the JSON output below  the highlighted components are the parts added by our 
 
 First, you will need to delete the Amazon Comprehend Custom endpoint to prevent recurring charges. Please navigate to the Amazon Comprehend console, select the model you created,  navigate to the created endpoint, and delete the endpoint. After the endpoint finishes deleting, go to your custom classifier and under the "Actions" dropdown, select "delete".
 
+Navigate to the IAM console, and delete the IAM roles that you manually created from the console. If you did the optional section, delete the IAM role you created, as well as the output S3 data created by the Comprehend Custom Classifier job.
+
 Next, you need to delete the resources that were copied into the S3 buckets (otherwise the CloudFormation rollback will fail). As mentioned above, you can get these bucket names from the CloudFormation console. From the command line, you can delete the data in these buckets (note that your bucket names will differ from ours) as follows:
  `aws s3 rm s3://enrich-comprehend-medical-notificationbucket-na5rpsp3mvhh --recursive;aws s3 rm s3://enrich-comprehend-medical-outputbucket-rc1n5hsykhmq/ --recursive`
 

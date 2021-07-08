@@ -93,7 +93,7 @@ The first step is to train and deploy a Comprehend Custom Document Classificatio
 ![Image](doc/image_5.png)
 5. Next, enter the S3 URI of the data that will be used to train the classifer. The S3 URI is:  `s3://aws-hcls-ml/blog_post_support_materials/comprehend_medical_custom_lambda_code/processed_mtsample_data/Training_Data.csv` 
    * **Note**: if you are working in a region other than `us-east-1,` please copy the data into an S3 bucket that is located in the region you are working in and modify the location of the S3 URI accordingly. This step is required because the custom training data provided to Custom Comprehend Models must be in the same region as the model that will be deployed.
-6. Under `Output Data`, please enter the S3 URI of the bucket that you want Comprehend to output to. This can be any bucke that you have permission to write to.
+6. Under `Output Data`, please enter the S3 URI of the bucket that you want Comprehend to output to. This can be any bucket that you have permission to write to.
 7. In the `Access Permissions` section, select `Create an IAM Role `and enter `medical-specialty-classifier` as the name suffix
 ![Image](doc/image_6.png)
 8. Leave the rest of the options as default, scroll to the bottom, and click `Train classifier`

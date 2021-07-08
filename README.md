@@ -81,9 +81,9 @@ You need the following prerequisites before you can proceed with this solution:
 
 ### Deploy a Custom Comprehend Model for Document Classification
 
-The first step is to train and deploy a Comprehend Custom Document Classification Model, which you will do in a no-code fashion from the [AWS Management Console](https://aws.amazon.com/console/). These steps are configured for the us-east-1 region. You will need to modify these steps if you are deploying your Custom Comprehend model to another region. [See](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/) here for a list of regions where Comprehend is available.
+The first step is to train and deploy an Amazon Comprehend Custom Document Classification Model, which you will do in a no-code fashion from the [AWS Management Console](https://aws.amazon.com/console/). These steps are configured for the us-east-1 region. You will need to modify these steps if you are deploying your Custom Comprehend model to another region. [See](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/) here for a list of regions where Amazon Comprehend is available.
 
-1. First, navigate to the Comprehend console [here](https://console.aws.amazon.com/comprehend), choose `Launch Amazon Comprehend` and then choose `Custom Classification` from the sidebar on the left. 
+1. First, navigate to the Amazon Comprehend console [here](https://console.aws.amazon.com/comprehend), choose `Launch Amazon Comprehend` and then choose `Custom Classification` from the sidebar on the left. 
 ![Image](doc/image_2.png)
 2. Next, click `Train Classifier` button:
 ![Image](doc/image_3.png)
@@ -93,7 +93,7 @@ The first step is to train and deploy a Comprehend Custom Document Classificatio
 ![Image](doc/image_5.png)
 5. Next, enter the S3 URI of the data that will be used to train the classifer. The S3 URI is:  `s3://aws-hcls-ml/blog_post_support_materials/comprehend_medical_custom_lambda_code/processed_mtsample_data/Training_Data.csv` 
    * **Note**: if you are working in a region other than `us-east-1,` please copy the data into an S3 bucket that is located in the region you are working in and modify the location of the S3 URI accordingly. This step is required because the custom training data provided to Custom Comprehend Models must be in the same region as the model that will be deployed.
-6. Under `Output Data`, please enter the S3 URI of the bucket that you want Comprehend to output to. This can be any bucket that you have permission to write to.
+6. Under `Output Data`, please enter the S3 URI of the bucket that you want Amazon Comprehend to output to. This can be any bucket that you have permission to write to.
 7. In the `Access Permissions` section, select `Create an IAM Role `and enter `medical-specialty-classifier` as the name suffix
 ![Image](doc/image_6.png)
 8. Leave the rest of the options as default, scroll to the bottom, and click `Train classifier`
@@ -156,15 +156,15 @@ Now that we have deployed our lambda function, let us test it with a small sampl
 1. Download the sample document from [here](https://github.com/aws-samples/amazon-comprehend-medical-enrich-custom-models/blob/main/files/sample_doc_in.txt). The document consists of just one sentence:
     `The patient has a BRCA2 mutation, and she was diagnosed with breast cancer one year ago.`
 2. Copy the document into the InputBucket (either using the console or the CLI) you created from the CFN. For example, mine is called `enriched-comprehend-medical-notificationbucket-11agxbkaav8eu`
-3. After waiting about 30 seconds (to give the Lambda function time to process the file), check the contents of ResultsBucket; it should contain a file that contains the results of the Lambda function in JSON format. The raw results can be found [here](hhttps://github.com/aws-samples/amazon-comprehend-medical-enrich-custom-models/blob/main/files/sample_doc_in.txt_out), but for clarity we also show them below. We have highlighted in peach the additional parts of the JSON object that are not included in regular Comprehend Medical.
+3. After waiting about 30 seconds (to give the Lambda function time to process the file), check the contents of ResultsBucket; it should contain a file that contains the results of the Lambda function in JSON format. The raw results can be found [here](hhttps://github.com/aws-samples/amazon-comprehend-medical-enrich-custom-models/blob/main/files/sample_doc_in.txt_out), but for clarity we also show them below. We have highlighted in peach the additional parts of the JSON object that are not included in regular Amazon Comprehend Medical.
 
 
-In the JSON output below  the highlighted components are the parts added by our custom augmenting of Comprehend Medical. Note that the phrase “BRCA2 mutation” (in addition to being annotated as a `Diagnosis`) is now also annotated as a `BREAST_CANCER_GENE`. Furthermore, the document is annotated as 84% probability of belonging to General Medicine, with other classes being scored lower. 
+In the JSON output below  the highlighted components are the parts added by our custom augmenting of Amazon Comprehend Medical. Note that the phrase “BRCA2 mutation” (in addition to being annotated as a `Diagnosis`) is now also annotated as a `BREAST_CANCER_GENE`. Furthermore, the document is annotated as 84% probability of belonging to General Medicine, with other classes being scored lower. 
 ![Image](doc/image_13.png)
 
 ## Cleanup
 
-First, you will need to delete the Comprehend Custom endpoint to prevent recurring charges. Please navigate to the Comprehend console, select the model you created,  navigate to the created endpoint, and delete the endpoint.
+First, you will need to delete the Amazon Comprehend Custom endpoint to prevent recurring charges. Please navigate to the Amazon Comprehend console, select the model you created,  navigate to the created endpoint, and delete the endpoint.
 
 Next, you need to delete the resources that were copied into the S3 buckets (otherwise the CloudFormation rollback will fail). As mentioned above, you can get these bucket names from the CloudFormation console. From the command line, you can delete the data in these buckets (note that your bucket names will differ from ours) as follows:
  `aws s3 rm s3://enrich-comprehend-medical-notificationbucket-na5rpsp3mvhh --recursive;aws s3 rm s3://enrich-comprehend-medical-outputbucket-rc1n5hsykhmq/ --recursive`

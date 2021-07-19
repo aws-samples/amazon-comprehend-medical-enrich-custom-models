@@ -1,7 +1,5 @@
 # Integrate Amazon Comprehend Medical with Custom Code and Models
 
-*This code repository supports the blog post `Enrich Amazon Comprehend Medical with Custom Code and Models`. Please see that blog for step-by-step instructions and further details for deploying this solution. Much of the content in this repository is copied from there.*
-
 ## Introduction
 
 Extracting important information from unstructured medical and healthcare texts like transcribed physician notes is a key step in understanding the content of such documents, yet many healthcare and life sciences organizations struggle with this. Manually extracting the data is a time consuming process, while automated rule-based attempts to extract the data don’t capture the full story as they fail to take context into account.
